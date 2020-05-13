@@ -12,11 +12,6 @@ const useStyles = makeStyles((theme) => ({
     direction: 'row',
     justify: 'center',
   },
-  paper: {
-    height: 900,
-    padding: theme.spacing(2),
-    color: theme.palette.text.secondary,
-  },
   heading: {
     padding: theme.spacing(2),
     textAlign: 'center',
@@ -34,8 +29,6 @@ export default function Editor() {
         defaultExpandIcon={<ChevronRightIcon />}
       >
         <EditorItem id={'1'} />
-        <EditorItem id={'2'} />
-        <EditorItem id={'3'} />
       </TreeView>
     </Grid>
   );
