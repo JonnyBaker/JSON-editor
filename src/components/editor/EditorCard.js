@@ -31,15 +31,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EditorCard(props) {
   const classes = useStyles();
+  const { element, name } = props;
 
   return (
     <Card>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          The Root Schema
+          {name}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          The root schema comprises the entire JSON document.
+          {element.description}
         </Typography>
       </CardContent>
       <div className={classes.controls}>

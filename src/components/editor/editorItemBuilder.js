@@ -1,10 +1,11 @@
 import React from 'react';
 import EditorItem from './EditorItem';
 
-const buildItems = (properties) => {
+export const buildItems = (properties) => {
   const items = Object.keys(properties).map((key) => {
     const property = properties[key];
-    return <EditorItem id={property.$id} currentProperty={property} />;
+    console.error('KEY', key);
+    return <EditorItem id={property.$id} currentProperty={property} name={key} />;
   });
 
   return items;
