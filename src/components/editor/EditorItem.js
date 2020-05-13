@@ -1,13 +1,19 @@
 import React from 'react';
 
 import TreeItem from '@material-ui/lab/TreeItem';
-import { makeStyles } from '@material-ui/core/styles';
 import EditorCard from './EditorCard';
+import { buildItems } from './editorItemBuilder';
 
-const useStyles = makeStyles((theme) => ({}));
+const hasChildren = (property) => {
+  return property.properties && Object.keys(property.properties).length > 0;
+};
 
 export default function EditorItem(props) {
-  const classes = useStyles();
+  const { id, currentProperty } = props;
 
-  return <TreeItem nodeId={props.id} label={<EditorCard />}></TreeItem>;
+  return (
+    <TreeItem nodeId={id} label={<EditorCard />}>
+      {hasChildren(currentProperty) && buildItems(currentProperty.properties)}
+    </TreeItem>
+  );
 }

@@ -4,7 +4,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import EditorItem from './EditorItem';
+import { schema } from '../../jsonSchema';
+import { buildItems } from './editorItemBuilder';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -20,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Editor() {
   const classes = useStyles();
+  const properties = schema.properties;
+
+  const items = buildItems(properties);
 
   return (
     <Grid md={8} item>
@@ -28,7 +33,7 @@ export default function Editor() {
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
       >
-        <EditorItem id={'1'} />
+        {items}
       </TreeView>
     </Grid>
   );

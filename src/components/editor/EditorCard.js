@@ -5,8 +5,6 @@ import { Card } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import clsx from 'clsx';
-
 import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
@@ -46,13 +44,13 @@ export default function EditorCard(props) {
       </CardContent>
       <div className={classes.controls}>
         <CardActions disableSpacing>
-          <IconButton aria-label="play/pause">
+          <IconButton aria-label="edit">
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="play/pause">
+          <IconButton aria-label="delete">
             <DeleteForeverIcon className={classes.playIcon} />
           </IconButton>
-          <Switch className={clsx(classes.requiredIcon)} color="primary" />
+          <Switch className={classes.requiredIcon} color="primary" />
         </CardActions>
       </div>
     </Card>
