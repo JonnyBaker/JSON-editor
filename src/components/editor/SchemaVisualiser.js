@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     'align-items': 'stretch',
     direction: 'row',
     justify: 'center',
+    maxWidth: '100%',
   },
   heading: {
     padding: theme.spacing(2),

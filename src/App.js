@@ -1,11 +1,16 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Editor from './components/editor/Editor';
+import SchemaVisualiser from './components/editor/SchemaVisualiser';
+import Editor from 'react-simple-code-editor';
+import { highlight, languages } from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-javascript';
+import { schema } from './jsonSchema';
+const util = require('util');
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,11 +18,6 @@ const useStyles = makeStyles((theme) => ({
     'align-items': 'stretch',
     direction: 'row',
     justify: 'center',
-  },
-  paper: {
-    height: 900,
-    padding: theme.spacing(2),
-    color: theme.palette.text.secondary,
   },
   heading: {
     padding: theme.spacing(2),
@@ -29,16 +29,27 @@ export default function App() {
   const [spacing] = React.useState(2);
   const classes = useStyles();
 
+  const formattedSchema = util.inspect(schema, { showHidden: false, depth: null });
+
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
       <Box className={classes.heading} color="text.primary">
         <Typography variant="h3">json-editor</Typography>
       </Box>
       <Grid container spacing={spacing}>
-        <Grid md={4} item>
-          <Paper className={classes.paper} />
+        <Grid lg={4} item>
+          <Editor
+            value={formattedSchema}
+            onValueChange={(formattedSchema) => this.setState({ formattedSchema })}
+            highlight={(formattedSchema) => highlight(formattedSchema, languages.js)}
+            padding={10}
+            style={{
+              fontFamily: '"Fira code", "Fira Mono", monospace',
+              fontSize: 12,
+            }}
+          />
         </Grid>
-        <Editor />
+        <SchemaVisualiser />
       </Grid>
     </Container>
   );

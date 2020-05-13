@@ -11,14 +11,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import Switch from '@material-ui/core/Switch';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
+  root: {},
   title: {
     fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
   },
   controls: {
     paddingLeft: theme.spacing(1),
