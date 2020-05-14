@@ -5,7 +5,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { schema } from '../../jsonSchema';
-import { buildItems } from './editorItemBuilder';
+import SchemaVisualiserItem from './SchemaVisualiserItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,10 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Editor() {
   const classes = useStyles();
-  const { required } = schema;
-  const properties = schema.properties;
-
-  const items = buildItems(properties, required);
 
   return (
     <Grid md={8} item>
@@ -35,7 +31,7 @@ export default function Editor() {
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
       >
-        {items}
+        <SchemaVisualiserItem currentProperty={schema} name={'root'} />
       </TreeView>
     </Grid>
   );

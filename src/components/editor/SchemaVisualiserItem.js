@@ -20,6 +20,7 @@ export default function EditorItem(props) {
   const { currentProperty, name, required } = props;
   const requiredFields = currentProperty.required;
 
+  console.error(currentProperty.$id);
   return (
     <TreeItem
       className={classes.root}
