@@ -23,9 +23,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Editor() {
   const classes = useStyles();
+  const { required } = schema;
   const properties = schema.properties;
 
-  const items = buildItems(properties);
+  const items = buildItems(properties, required);
 
   return (
     <Grid md={8} item>

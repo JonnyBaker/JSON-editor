@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EditorCard(props) {
   const classes = useStyles();
-  const { element, name } = props;
+  const { element, name, required } = props;
 
   return (
     <Card>
@@ -46,7 +46,7 @@ export default function EditorCard(props) {
           <IconButton aria-label="delete">
             <DeleteForeverIcon className={classes.playIcon} />
           </IconButton>
-          <Switch className={classes.requiredIcon} color="primary" />
+          <Switch className={classes.requiredIcon} checked={required} color="primary" />
         </CardActions>
       </div>
     </Card>

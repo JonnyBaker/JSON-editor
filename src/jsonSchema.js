@@ -5,7 +5,7 @@ export const schema = {
   title: 'The Root Schema',
   description: 'The root schema is the schema that comprises the entire JSON document.',
   default: {},
-  required: ['checked', 'dimensions', 'id', 'name', 'price', 'tags'],
+  required: ['id', 'name', 'price'],
   properties: {
     checked: {
       $id: '#/properties/checked',
