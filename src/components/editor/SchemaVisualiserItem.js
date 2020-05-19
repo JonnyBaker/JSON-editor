@@ -17,7 +17,7 @@ const hasChildren = (property) => {
 
 export default function EditorItem(props) {
   const classes = useStyles();
-  const { currentProperty, name, required, handleArchive } = props;
+  const { currentProperty, name, required, handleArchive, isRoot } = props;
   const requiredFields = currentProperty.required;
 
   return (
@@ -30,6 +30,7 @@ export default function EditorItem(props) {
           required={required}
           name={name}
           handleArchive={handleArchive}
+          isRoot={isRoot}
         />
       }
     >

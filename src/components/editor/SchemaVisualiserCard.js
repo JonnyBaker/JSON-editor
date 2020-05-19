@@ -26,16 +26,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EditorCard(props) {
   const classes = useStyles();
-  const { element, name, required, handleArchive } = props;
+  const { element, name, required, handleArchive, isRoot } = props;
 
-  const [bob, setBob] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
-    setBob(true);
+    setOpen(true);
   };
 
   const handleClose = () => {
-    setBob(false);
+    setOpen(false);
   };
 
   return (
@@ -48,18 +48,22 @@ export default function EditorCard(props) {
           {element.description}
         </Typography>
       </CardContent>
-      <div className={classes.controls}>
-        <CardActions disableSpacing>
-          <IconButton aria-label="edit" onClick={() => handleClickOpen()}>
-            <EditIcon />
-          </IconButton>
-          <IconButton aria-label="delete" onClick={() => handleArchive(element.$id)}>
-            <DeleteForeverIcon className={classes.playIcon} />
-          </IconButton>
-          <Switch className={classes.requiredIcon} checked={required} color="primary" />
-        </CardActions>
-      </div>
-      <SchemaItemDialog bob={bob} handleClose={handleClose} />
+
+      {!isRoot && (
+        <div className={classes.controls}>
+          <CardActions disableSpacing>
+            <IconButton aria-label="edit" onClick={() => handleClickOpen()}>
+              <EditIcon />
+            </IconButton>
+            <IconButton aria-label="delete" onClick={() => handleArchive(element.$id)}>
+              <DeleteForeverIcon className={classes.playIcon} />
+            </IconButton>
+            <Switch className={classes.requiredIcon} checked={required} color="primary" />
+          </CardActions>
+        </div>
+      )}
+
+      <SchemaItemDialog open={open} handleClose={handleClose} />
     </Card>
   );
 }

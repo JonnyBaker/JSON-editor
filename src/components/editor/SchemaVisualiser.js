@@ -28,7 +28,6 @@ export default function Editor() {
   const handleArchive = (id) => {
     removeNodeFromTree((tree) => {
       delete tree.properties.dimensions.properties.width; //todo this needs to use the id
-      console.error('AFTER', tree);
       return { ...tree };
     });
   };
@@ -40,7 +39,12 @@ export default function Editor() {
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
       >
-        <SchemaVisualiserItem currentProperty={tree} name={'root'} handleArchive={handleArchive} />
+        <SchemaVisualiserItem
+          currentProperty={tree}
+          name={'root'}
+          handleArchive={handleArchive}
+          isRoot={true}
+        />
       </TreeView>
     </Grid>
   );

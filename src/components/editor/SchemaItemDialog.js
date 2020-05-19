@@ -6,9 +6,24 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  form: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: 500,
+    },
+    '& .MuiButton-root': {
+      margin: theme.spacing(1),
+      float: 'right',
+    },
+  },
+}));
 
 export default function FormDialog(props) {
-  const { bob, handleClose } = props;
+  const { open, handleClose } = props;
+  const classes = useStyles();
 
   const handleDialogClick = (e) => {
     e.stopPropagation();
@@ -16,31 +31,25 @@ export default function FormDialog(props) {
 
   return (
     <Dialog
-      open={bob}
+      open={open}
       onClose={handleClose}
       onClick={handleDialogClick}
       aria-labelledby="form-dialog-title"
     >
-      <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-      <DialogContent>
-        <DialogContentText>Field Metadata</DialogContentText>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Cancel
-        </Button>
-        <Button onClick={handleClose} color="primary">
+      <form className={classes.form} noValidate autoComplete="off">
+        <div>
+          <TextField id="enums" label="Enum" />
+        </div>
+        <div>
+          <TextField id="examples" label="Examples" />
+        </div>
+        <Button variant="contained" color="primary">
           Save
         </Button>
-      </DialogActions>
+        <Button variant="contained" color="secondary">
+          Cancel
+        </Button>{' '}
+      </form>
     </Dialog>
   );
 }
