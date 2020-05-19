@@ -23,6 +23,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Editor() {
   const classes = useStyles();
+  const [tree, removeNodeFromTree] = React.useState(schema);
+
+  const handleArchive = (id) => {
+    removeNodeFromTree((tree) => {
+      delete tree.properties.dimensions.properties.width;
+      console.error('AFTER', tree);
+      return { ...tree };
+    });
+  };
 
   return (
     <Grid md={8} item>
@@ -31,7 +40,7 @@ export default function Editor() {
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
       >
-        <SchemaVisualiserItem currentProperty={schema} name={'root'} />
+        <SchemaVisualiserItem currentProperty={tree} name={'root'} handleArchive={handleArchive} />
       </TreeView>
     </Grid>
   );
