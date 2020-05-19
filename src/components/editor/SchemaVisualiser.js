@@ -20,6 +20,23 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
 }));
+const hasChildren = (property) => {
+  return property.properties && Object.keys(property.properties).length > 0;
+};
+
+const deleteById = (node, id) => {
+  return Object.keys(node).map((key) => {
+    const property = node[key];
+
+    if (hasChildren(property)) {
+      deleteById(property.properties, id);
+    }
+
+    if (property.$id === id) {
+      delete node[key];
+    }
+  });
+};
 
 export default function Editor() {
   const classes = useStyles();
@@ -27,7 +44,7 @@ export default function Editor() {
 
   const handleArchive = (id) => {
     removeNodeFromTree((tree) => {
-      delete tree.properties.dimensions.properties.width; //todo this needs to use the id
+      deleteById(tree.properties, id);
       return { ...tree };
     });
   };

@@ -16,8 +16,8 @@ const hasChildren = (property) => {
 };
 
 export default function EditorItem(props) {
-  const classes = useStyles();
   const { currentProperty, name, required, handleArchive, isRoot } = props;
+  const classes = useStyles();
   const requiredFields = currentProperty.required;
 
   return (
