@@ -10,23 +10,39 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 import Switch from '@material-ui/core/Switch';
 import SchemaItemDialog from './SchemaItemDialog';
+import AddIcon from '@material-ui/icons/Add';
+
 const useStyles = makeStyles((theme) => ({
   root: {},
   title: {
-    fontSize: 14,
+    fontSize: 15,
+    fontWeight: 'bold',
+    display: 'inline-block',
+  },
+  id: {
+    fontSize: 12,
+    fontWeight: 'italic',
+  },
+  button: {
+    float: 'right',
+  },
+  description: {
+    fontSize: 12,
   },
   controls: {
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
   requiredIcon: {
-    marginLeft: 'auto',
+    float: 'right',
   },
 }));
 
 export default function EditorCard(props) {
   const classes = useStyles();
   const { element, name, required, handleArchive, isRoot } = props;
+  const { type } = element;
+  const id = element.$id;
 
   const [open, setOpen] = React.useState(false);
 
@@ -44,24 +60,34 @@ export default function EditorCard(props) {
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {name}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <Switch className={classes.requiredIcon} checked={required} color="primary" />
+        <Typography className={classes.id} color="textSecondary" gutterBottom>
+          {id}
+        </Typography>
+        <Typography className={classes.description} color="textSecondary">
           {element.description}
         </Typography>
+        <Typography className={classes.description} color="textSecondary">
+          Type: <b>{type}</b>
+        </Typography>
       </CardContent>
-
-      {!isRoot && (
-        <div className={classes.controls}>
-          <CardActions disableSpacing>
-            <IconButton aria-label="edit" onClick={() => handleClickOpen()}>
-              <EditIcon />
-            </IconButton>
-            <IconButton aria-label="delete" onClick={() => handleArchive(element.$id)}>
-              <DeleteForeverIcon className={classes.playIcon} />
-            </IconButton>
-            <Switch className={classes.requiredIcon} checked={required} color="primary" />
-          </CardActions>
-        </div>
-      )}
+      <div className={classes.controls}>
+        <CardActions disableSpacing>
+          {!isRoot && (
+            <div>
+              <IconButton aria-label="edit" onClick={() => handleClickOpen()}>
+                <EditIcon />
+              </IconButton>
+              <IconButton aria-label="delete" onClick={() => handleArchive(id)}>
+                <DeleteForeverIcon className={classes.playIcon} />
+              </IconButton>
+            </div>
+          )}
+          <IconButton aria-label="add" onClick={() => handleClickOpen()}>
+            <AddIcon />
+          </IconButton>
+        </CardActions>
+      </div>
 
       <SchemaItemDialog open={open} handleClose={handleClose} />
     </Card>
