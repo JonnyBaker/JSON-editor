@@ -8,16 +8,22 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function FormDialog(props) {
-  const { open, handleClose } = props;
+  const { bob, handleClose } = props;
+
+  const handleDialogClick = (e) => {
+    e.stopPropagation();
+  };
 
   return (
-    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+    <Dialog
+      open={bob}
+      onClose={handleClose}
+      onClick={handleDialogClick}
+      aria-labelledby="form-dialog-title"
+    >
       <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          To subscribe to this website, please enter your email address here. We will send updates
-          occasionally.
-        </DialogContentText>
+        <DialogContentText>Field Metadata</DialogContentText>
         <TextField
           autoFocus
           margin="dense"
@@ -32,7 +38,7 @@ export default function FormDialog(props) {
           Cancel
         </Button>
         <Button onClick={handleClose} color="primary">
-          Subscribe
+          Save
         </Button>
       </DialogActions>
     </Dialog>

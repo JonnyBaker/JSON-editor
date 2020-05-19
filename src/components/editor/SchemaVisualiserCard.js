@@ -28,14 +28,14 @@ export default function EditorCard(props) {
   const classes = useStyles();
   const { element, name, required, handleArchive } = props;
 
-  const [open, setOpen] = React.useState(false);
+  const [bob, setBob] = React.useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setBob(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setBob(false);
   };
 
   return (
@@ -59,7 +59,7 @@ export default function EditorCard(props) {
           <Switch className={classes.requiredIcon} checked={required} color="primary" />
         </CardActions>
       </div>
-      <SchemaItemDialog open={open} handleClose={handleClose} />
+      <SchemaItemDialog bob={bob} handleClose={handleClose} />
     </Card>
   );
 }
