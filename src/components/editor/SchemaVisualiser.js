@@ -27,7 +27,7 @@ export default function Editor() {
 
   const handleArchive = (id) => {
     removeNodeFromTree((tree) => {
-      delete tree.properties.dimensions.properties.width;
+      delete tree.properties.dimensions.properties.width; //todo this needs to use the id
       console.error('AFTER', tree);
       return { ...tree };
     });

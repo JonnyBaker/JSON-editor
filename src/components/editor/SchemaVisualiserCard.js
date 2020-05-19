@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 import Switch from '@material-ui/core/Switch';
-
+import SchemaItemDialog from './SchemaItemDialog';
 const useStyles = makeStyles((theme) => ({
   root: {},
   title: {
@@ -28,6 +28,16 @@ export default function EditorCard(props) {
   const classes = useStyles();
   const { element, name, required, handleArchive } = props;
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Card>
       <CardContent>
@@ -40,7 +50,7 @@ export default function EditorCard(props) {
       </CardContent>
       <div className={classes.controls}>
         <CardActions disableSpacing>
-          <IconButton aria-label="edit">
+          <IconButton aria-label="edit" onClick={() => handleClickOpen()}>
             <EditIcon />
           </IconButton>
           <IconButton aria-label="delete" onClick={() => handleArchive(element.$id)}>
@@ -49,6 +59,7 @@ export default function EditorCard(props) {
           <Switch className={classes.requiredIcon} checked={required} color="primary" />
         </CardActions>
       </div>
+      <SchemaItemDialog open={open} handleClose={handleClose} />
     </Card>
   );
 }
