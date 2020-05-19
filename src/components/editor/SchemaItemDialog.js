@@ -42,7 +42,7 @@ export default function FormDialog(props) {
         <Button variant="contained" color="primary">
           Save
         </Button>
-        <Button variant="contained" color="secondary">
+        <Button variant="contained" color="secondary" onClick={handleClose}>
           Cancel
         </Button>
       </form>
