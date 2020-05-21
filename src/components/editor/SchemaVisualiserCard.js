@@ -11,7 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import Switch from '@material-ui/core/Switch';
 import SchemaItemDialog from './SchemaItemDialog';
 import AddIcon from '@material-ui/icons/Add';
-
+import RequiredSwitch from './RequiredSwitch/RequiredSwitch';
 const useStyles = makeStyles((theme) => ({
   root: {},
   title: {
@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
   requiredIcon: {
     float: 'right',
+    '& .MuiTypography-body1': {
+      fontSize: 12,
+    },
   },
 }));
 
@@ -46,7 +49,9 @@ export default function EditorCard(props) {
 
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (event) => {
+    event.stopPropagation();
+
     setOpen(true);
   };
 
@@ -60,7 +65,7 @@ export default function EditorCard(props) {
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {name}
         </Typography>
-        <Switch className={classes.requiredIcon} checked={required} color="primary" />
+        <RequiredSwitch checked={required} />
         <Typography className={classes.id} color="textSecondary" gutterBottom>
           {id}
         </Typography>
@@ -75,17 +80,17 @@ export default function EditorCard(props) {
         <CardActions disableSpacing>
           {!isRoot && (
             <div>
-              <IconButton aria-label="edit" onClick={() => handleClickOpen()}>
+              <IconButton aria-label="edit" onClick={(event) => handleClickOpen(event)}>
                 <EditIcon />
               </IconButton>
               <IconButton aria-label="delete" onClick={() => handleArchive(id)}>
                 <DeleteForeverIcon className={classes.playIcon} />
               </IconButton>
+              <IconButton aria-label="add" onClick={(event) => handleClickOpen(event)}>
+                <AddIcon />
+              </IconButton>
             </div>
           )}
-          <IconButton aria-label="add" onClick={() => handleClickOpen()}>
-            <AddIcon />
-          </IconButton>
         </CardActions>
       </div>
 

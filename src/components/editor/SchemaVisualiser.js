@@ -35,6 +35,7 @@ const deleteById = (node, id) => {
     if (property.$id === id) {
       delete node[key];
     }
+    return node;
   });
 };
 
