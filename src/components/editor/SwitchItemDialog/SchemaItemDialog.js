@@ -2,21 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  form: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: 500,
-    },
-    '& .MuiButton-root': {
-      margin: theme.spacing(1),
-      float: 'right',
-    },
-  },
-}));
-
+import useStyles from './SchemaVisualiserItem.styles';
 export default function FormDialog(props) {
   const { open, handleClose } = props;
   const classes = useStyles();

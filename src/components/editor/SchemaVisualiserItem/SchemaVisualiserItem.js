@@ -1,15 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
 import TreeItem from '@material-ui/lab/TreeItem';
-import SchemaVisualiserCard from './SchemaVisualiserCard';
+import SchemaVisualiserCard from '../SchemaVisualiserCard/SchemaVisualiserCard';
 import { buildItems } from './editorItemBuilder';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    'padding-top': '10px',
-  },
-}));
+import useStyles from './SchemaVisualiserItem.styles';
 
 const hasChildren = (property) => {
   return property.properties && Object.keys(property.properties).length > 0;

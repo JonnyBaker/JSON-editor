@@ -3,23 +3,9 @@ import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import { schema } from '../../jsonSchema';
-import SchemaVisualiserItem from './SchemaVisualiserItem';
+import SchemaVisualiserItem from '../SchemaVisualiserItem/SchemaVisualiserItem';
+import useStyles from './SchemaVisualiser.styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    'align-items': 'stretch',
-    direction: 'row',
-    justify: 'center',
-    maxWidth: '100%',
-  },
-  heading: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-  },
-}));
 const hasChildren = (property) => {
   return property.properties && Object.keys(property.properties).length > 0;
 };

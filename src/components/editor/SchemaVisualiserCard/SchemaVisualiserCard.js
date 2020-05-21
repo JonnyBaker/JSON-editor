@@ -8,38 +8,10 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
-import Switch from '@material-ui/core/Switch';
-import SchemaItemDialog from './SchemaItemDialog';
+import SchemaItemDialog from '../SwitchItemDialog/SchemaItemDialog';
 import AddIcon from '@material-ui/icons/Add';
-import RequiredSwitch from './RequiredSwitch/RequiredSwitch';
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  title: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    display: 'inline-block',
-  },
-  id: {
-    fontSize: 12,
-    fontWeight: 'italic',
-  },
-  button: {
-    float: 'right',
-  },
-  description: {
-    fontSize: 12,
-  },
-  controls: {
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-  },
-  requiredIcon: {
-    float: 'right',
-    '& .MuiTypography-body1': {
-      fontSize: 12,
-    },
-  },
-}));
+import RequiredSwitch from '../RequiredSwitch/RequiredSwitch';
+import useStyles from './SchemaVisualiserCard.styles';
 
 export default function EditorCard(props) {
   const classes = useStyles();
