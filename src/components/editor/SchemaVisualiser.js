@@ -39,9 +39,9 @@ const deleteById = (node, id) => {
   });
 };
 
-export default function Editor() {
+export default function Editor(props) {
   const classes = useStyles();
-  const [tree, removeNodeFromTree] = React.useState(schema);
+  const { tree, removeNodeFromTree } = props;
 
   const handleArchive = (id) => {
     removeNodeFromTree((tree) => {

@@ -28,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
   const [spacing] = React.useState(2);
   const classes = useStyles();
-
-  const formattedSchema = util.inspect(schema, { showHidden: false, depth: null });
+  const [tree, removeNodeFromTree] = React.useState(schema);
 
   return (
     <Container maxWidth="lg">
@@ -39,9 +38,10 @@ export default function App() {
       <Grid container spacing={spacing}>
         <Grid lg={4} item>
           <Editor
-            value={formattedSchema}
-            onValueChange={(formattedSchema) => this.setState({ formattedSchema })}
-            highlight={(formattedSchema) => highlight(formattedSchema, languages.js)}
+            value={tree}
+            highlight={(tree) =>
+              highlight(util.inspect(tree, { showHidden: false, depth: null }), languages.js)
+            }
             padding={10}
             style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
@@ -49,7 +49,7 @@ export default function App() {
             }}
           />
         </Grid>
-        <SchemaVisualiser />
+        <SchemaVisualiser tree={tree} removeNodeFromTree={removeNodeFromTree} />
       </Grid>
     </Container>
   );
