@@ -71,6 +71,15 @@ export const schema = {
       default: 0,
       examples: [12.5],
     },
+    status: {
+      $id: '#/properties/status',
+      type: 'string',
+      title: 'The status of the schema',
+      description: 'The current status of the schema',
+      default: '',
+      examples: ['completed'],
+      enums: ['COMPLETED', 'CANCELLED', 'PENDING'],
+    },
     tags: {
       $id: '#/properties/tags',
       type: 'array',

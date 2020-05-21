@@ -9,7 +9,7 @@ export const buildItems = (properties, requiredFields, handleArchive) => {
     return (
       <SchemaVisualiserItem
         key={property.$id}
-        currentProperty={property}
+        node={property}
         required={required}
         name={key}
         handleArchive={handleArchive}

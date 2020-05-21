@@ -10,17 +10,17 @@ const hasChildren = (property) => {
 };
 
 export default function EditorItem(props) {
-  const { currentProperty, name, required, handleArchive, isRoot } = props;
+  const { node, name, required, handleArchive, isRoot } = props;
   const classes = useStyles();
-  const requiredFields = currentProperty.required;
+  const requiredFields = node.required;
 
   return (
     <TreeItem
       className={classes.root}
-      nodeId={currentProperty.$id}
+      nodeId={node.$id}
       label={
         <SchemaVisualiserCard
-          element={currentProperty}
+          node={node}
           required={required}
           name={name}
           handleArchive={handleArchive}
@@ -28,8 +28,7 @@ export default function EditorItem(props) {
         />
       }
     >
-      {hasChildren(currentProperty) &&
-        buildItems(currentProperty.properties, requiredFields, handleArchive)}
+      {hasChildren(node) && buildItems(node.properties, requiredFields, handleArchive)}
     </TreeItem>
   );
 }

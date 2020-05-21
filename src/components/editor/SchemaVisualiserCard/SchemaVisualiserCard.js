@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { makeStyles } from '@material-ui/core/styles';
 import { Card } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
@@ -15,9 +13,9 @@ import useStyles from './SchemaVisualiserCard.styles';
 
 export default function EditorCard(props) {
   const classes = useStyles();
-  const { element, name, required, handleArchive, isRoot } = props;
-  const { type } = element;
-  const id = element.$id;
+  const { node, name, required, handleArchive, isRoot } = props;
+  const { type, description } = node;
+  const id = node.$id;
 
   const [open, setOpen] = React.useState(false);
 
@@ -42,7 +40,7 @@ export default function EditorCard(props) {
           {id}
         </Typography>
         <Typography className={classes.description} color="textSecondary">
-          {element.description}
+          {description}
         </Typography>
         <Typography className={classes.description} color="textSecondary">
           Type: <b>{type}</b>
@@ -56,7 +54,7 @@ export default function EditorCard(props) {
                 <EditIcon />
               </IconButton>
               <IconButton aria-label="delete" onClick={() => handleArchive(id)}>
-                <DeleteForeverIcon className={classes.playIcon} />
+                <DeleteForeverIcon />
               </IconButton>
               <IconButton aria-label="add" onClick={(event) => handleClickOpen(event)}>
                 <AddIcon />
@@ -66,7 +64,7 @@ export default function EditorCard(props) {
         </CardActions>
       </div>
 
-      <SchemaItemDialog open={open} handleClose={handleClose} />
+      <SchemaItemDialog open={open} handleClose={handleClose} node={node} />
     </Card>
   );
 }

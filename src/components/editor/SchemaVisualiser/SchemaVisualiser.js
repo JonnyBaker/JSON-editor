@@ -44,7 +44,7 @@ export default function Editor(props) {
         defaultExpandIcon={<ChevronRightIcon />}
       >
         <SchemaVisualiserItem
-          currentProperty={tree}
+          node={tree}
           name={'root'}
           handleArchive={handleArchive}
           isRoot={true}
