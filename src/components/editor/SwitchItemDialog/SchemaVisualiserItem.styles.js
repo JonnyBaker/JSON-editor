@@ -1,15 +1,21 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  root: {},
   form: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: 500,
-    },
-    '& .MuiButton-root': {
-      margin: theme.spacing(1),
-      float: 'right',
-    },
+    marginTop: theme.spacing(),
+  },
+  field: {
+    margin: theme.spacing(1),
+    width: '90%',
+  },
+  button: {
+    margin: theme.spacing(1),
+    float: 'right',
+  },
+  select: {
+    margin: theme.spacing(1),
+    width: '90%',
   },
 }));
 
