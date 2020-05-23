@@ -13,16 +13,22 @@ import useStyles from './SchemaVisualiserCard.styles';
 
 export default function EditorCard(props) {
   const classes = useStyles();
-  const { node, name, required, handleArchive, isRoot } = props;
-  const { type, description } = node;
-  const id = node.$id;
+  const { name, required, handleArchive, isRoot } = props;
 
   const [open, setOpen] = React.useState(false);
+  const [node, setNode] = React.useState(props.node);
 
+  const { type, description } = node;
+  const id = node.$id;
   const handleClickOpen = (event) => {
     event.stopPropagation();
 
     setOpen(true);
+  };
+
+  const handleNodeChange = (node) => {
+    console.error(node);
+    setNode(node);
   };
 
   const handleClose = () => {
@@ -64,7 +70,12 @@ export default function EditorCard(props) {
         </CardActions>
       </div>
 
-      <SchemaItemDialog open={open} handleClose={handleClose} node={node} />
+      <SchemaItemDialog
+        open={open}
+        handleClose={handleClose}
+        handleNodeChange={handleNodeChange}
+        node={node}
+      />
     </Card>
   );
 }

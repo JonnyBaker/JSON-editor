@@ -30,6 +30,7 @@ export default function Editor(props) {
   const { tree, removeNodeFromTree } = props;
 
   const handleArchive = (id) => {
+    //TODO change this so it handlesUpdate instead of just deleting
     removeNodeFromTree((tree) => {
       deleteById(tree.properties, id);
       return { ...tree };

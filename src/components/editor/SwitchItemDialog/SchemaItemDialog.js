@@ -10,10 +10,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 export default function FormDialog(props) {
   const { open, handleClose, node } = props;
+  const [type, setType] = React.useState(node.type);
+
   const classes = useStyles();
 
   const handleDialogClick = (e) => {
     e.stopPropagation();
+  };
+
+  const handleTypeChangeEvent = (event) => {
+    setType(event.target.value);
   };
 
   return (
@@ -26,7 +32,12 @@ export default function FormDialog(props) {
       <form className={classes.form} noValidate autoComplete="off">
         <FormControl variant="outlined" className={classes.select}>
           <InputLabel id="typeLabel">type</InputLabel>
-          <Select id="type" value={node.type} label="Type">
+          <Select
+            id="type"
+            value={type}
+            label="Type"
+            onClick={(event) => handleTypeChangeEvent(event)}
+          >
             <MenuItem value={'integer'}>integer</MenuItem>
             <MenuItem value={'string'}>string</MenuItem>
             <MenuItem value={'object'}>object</MenuItem>
