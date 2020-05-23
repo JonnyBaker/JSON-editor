@@ -1,7 +1,7 @@
 import React from 'react';
 import SchemaVisualiserItem from './SchemaVisualiserItem';
 
-export const buildItems = (properties, requiredFields, handleArchive) => {
+export const buildItems = (properties, requiredFields, updateTree) => {
   const items = Object.keys(properties).map((key) => {
     const property = properties[key];
     const required = requiredFields.includes(key);
@@ -12,7 +12,7 @@ export const buildItems = (properties, requiredFields, handleArchive) => {
         node={property}
         required={required}
         name={key}
-        handleArchive={handleArchive}
+        updateTree={updateTree}
       />
     );
   });

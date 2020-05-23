@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
   const [spacing] = React.useState(2);
   const classes = useStyles();
-  const [tree, removeNodeFromTree] = React.useState(schema);
+  const [tree, updateTree] = React.useState(schema);
 
   return (
     <Container maxWidth="lg">
@@ -49,7 +49,7 @@ export default function App() {
             }}
           />
         </Grid>
-        <SchemaVisualiser tree={tree} removeNodeFromTree={removeNodeFromTree} />
+        <SchemaVisualiser tree={tree} updateTree={updateTree} />
       </Grid>
     </Container>
   );

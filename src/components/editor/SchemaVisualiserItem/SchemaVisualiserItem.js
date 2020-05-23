@@ -10,7 +10,7 @@ const hasChildren = (property) => {
 };
 
 export default function EditorItem(props) {
-  const { node, name, required, handleArchive, isRoot } = props;
+  const { node, name, required, updateTree, isRoot } = props;
   const classes = useStyles();
   const requiredFields = node.required;
 
@@ -23,12 +23,12 @@ export default function EditorItem(props) {
           node={node}
           required={required}
           name={name}
-          handleArchive={handleArchive}
+          updateTree={updateTree}
           isRoot={isRoot}
         />
       }
     >
-      {hasChildren(node) && buildItems(node.properties, requiredFields, handleArchive)}
+      {hasChildren(node) && buildItems(node.properties, requiredFields, updateTree)}
     </TreeItem>
   );
 }
